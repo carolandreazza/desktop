@@ -18,23 +18,15 @@ const ImgBackground = () => {
   useEffect(() => {
     //console.log('useEffect')
    
-    fetch('https://api.unsplash.com/search/photos?client_id=uLplTaJQ5CJ7KXynUEEVKckSNlEur_XoEbKHmiSdD74&query=landscape&page=1&per_page=1&orientation=landscape')
+    //fetch('https://api.unsplash.com/search/photos?client_id=uLplTaJQ5CJ7KXynUEEVKckSNlEur_XoEbKHmiSdD74&query=dog&page=1&per_page=1&orientation=landscape')
+    fetch('https://api.unsplash.com/photos/random/?client_id=uLplTaJQ5CJ7KXynUEEVKckSNlEur_XoEbKHmiSdD74&query=lansdcape&orientation=landscape')
     //fetch('https://randomuser.me/api/?results=500')
     .then(res => {return res.json();})
     .then(data => {
-      const urls = data.results.map((pic: { results: string | number | undefined; id: string; urls: { raw: string | undefined; full: string | undefined; regular: string | undefined; }; }) => {
-        return( //opacity: 0.7,
-          <div key={pic.id}>
-            <img src={pic.urls.full} style={{ width:'100%',height:760, position: 'fixed' }} />
-          </div>
-        )
-      });
-      // const { idP, imgUrl } = urls;
-      // //setdataResult();
-       setUrl(urls)
-      //   console.log('imgUrl')
-      //   console.log(urls)
-      //   console.log(url)
+      console.log('imgUrl')
+       console.log(data.urls.raw)
+       setUrl(data.urls.raw);
+        //opacity: 0.7,
     })
     .catch(console.log)
   }, [])
@@ -43,7 +35,8 @@ const ImgBackground = () => {
   return ( 
     <>
       <div>
-        {url}
+        {/* {url} */}
+        <img src={url.toString()} alt="" style={{ width:'100%',height:760, position: 'fixed' }} />
       </div>
       
     </>
